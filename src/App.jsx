@@ -1,9 +1,5 @@
-import Calclator from "./components/Calculator";
+import Calculator from "./components/Calculator";
 
 export default function App() {
-  return (
-    <div>
-      <Calclator />
-    </div>
-  );
+  return <Calculator />; //lifting state up
 }
