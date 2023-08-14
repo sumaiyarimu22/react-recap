@@ -1,5 +1,11 @@
-import Calculator from "./components/Calculator";
+// import Calculator from "./components/Calculator";
+
+import Text from "./components/inheritence/Text";
 
 export default function App() {
-  return <Calculator />; //lifting state up
+  return (
+    <div>
+      <Text />
+    </div>
+  ); //<Calculator />; //lifting state up
 }
