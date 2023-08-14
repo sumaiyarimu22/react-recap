@@ -1,16 +1,18 @@
 // import Calculator from "./components/Calculator";
 
-import Emoji from "./components/composition/Emoji";
-import Text from "./components/composition/Text";
-import Bracket from "./components/composition/Bracket";
+import ClickCounter from "./components/ClickCounter";
+import HoverCounter from "./components/HoverCounter";
 
+// import Emoji from "./components/composition/Emoji";
+// import Text from "./components/composition/Text";
+// import Bracket from "./components/composition/Bracket";
 // import Text from "./components/inheritence/Text";
 
 export default function App() {
   return (
     <div>
       {/* <Text /> */}
-      <Emoji>
+      {/* <Emoji>
         {({ addEmoji }) => (
           <Bracket>
             {({ addBracket }) => (
@@ -18,7 +20,9 @@ export default function App() {
             )}
           </Bracket>
         )}
-      </Emoji>
+      </Emoji> */}
+      <ClickCounter />
+      <HoverCounter />
     </div>
   ); //<Calculator />; //lifting state up
 }
