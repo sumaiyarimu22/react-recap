@@ -1,6 +1,13 @@
 // eslint-disable-next-line react/prop-types
-export default function Text({ addEmoji }) {
-  const text = "I am javascript programing language.";
+export default function Text({ addEmoji, addBracket }) {
+  let text = "I am javascript programing language.";
 
-  return <div>{addEmoji ? addEmoji(text, "🎈") : text}</div>;
+  if (addEmoji) {
+    text = addEmoji(text, "🎁");
+  }
+  if (addBracket) {
+    text = addBracket(text);
+  }
+
+  return <div>{text}</div>;
 }
