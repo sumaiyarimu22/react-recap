@@ -1,28 +1,21 @@
-// import Calculator from "./components/Calculator";
-
 import ClickCounter from "./components/ClickCounter";
 import HoverCounter from "./components/HoverCounter";
-
-// import Emoji from "./components/composition/Emoji";
-// import Text from "./components/composition/Text";
-// import Bracket from "./components/composition/Bracket";
-// import Text from "./components/inheritence/Text";
+import RenderCounter from "./components/RenderCounter";
 
 export default function App() {
   return (
     <div>
-      {/* <Text /> */}
-      {/* <Emoji>
-        {({ addEmoji }) => (
-          <Bracket>
-            {({ addBracket }) => (
-              <Text addEmoji={addEmoji} addBracket={addBracket} />
-            )}
-          </Bracket>
+      <RenderCounter>
+        {(counter, incrementCount) => (
+          <ClickCounter count={counter} incrementCount={incrementCount} />
         )}
-      </Emoji> */}
-      <ClickCounter />
-      <HoverCounter />
+      </RenderCounter>
+
+      <RenderCounter>
+        {(counter, incrementCount) => (
+          <HoverCounter count={counter} incrementCount={incrementCount} />
+        )}
+      </RenderCounter>
     </div>
-  ); //<Calculator />; //lifting state up
+  );
 }
