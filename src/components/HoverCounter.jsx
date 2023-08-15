@@ -17,12 +17,15 @@
 //render way
 
 // eslint-disable-next-line react/prop-types
-export default function HoverCounter({ count, incrementCount }) {
+export default function HoverCounter({ count, incrementCount, theme }) {
   // eslint-disable-next-line react/prop-types
-
+  const style =
+    theme === "dark" ? { backgroundColor: "#000000", color: "#ffffff" } : null;
   return (
     <div>
-      <h1 onMouseOver={incrementCount}> Hoveres {count} times</h1>
+      <h1 onMouseOver={incrementCount} style={style}>
+        Hoveres {count} times
+      </h1>
     </div>
   );
 }
