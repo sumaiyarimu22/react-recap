@@ -1,14 +1,16 @@
-import Users from "./components/Users";
-import NewUser from "./components/NewUser";
-import Userprovider from "./context/UsersContext";
+import { useState } from "react";
+import MyComponent from "./components/MyComponent";
 
-const App = () => {
+export default function App() {
+  const [show, setShow] = useState(true);
   return (
-    <Userprovider>
-      <NewUser />
-      <Users />
-    </Userprovider>
+    <div>
+      <div>{show && <MyComponent />}</div>
+      <p>
+        <button type="button" onClick={() => setShow((prevShow) => !prevShow)}>
+          {show ? "hide post" : "show post"}
+        </button>
+      </p>
+    </div>
   );
-};
-
-export default App;
+}
