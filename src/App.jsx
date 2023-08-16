@@ -1,9 +1,9 @@
-import GetPost2 from "./components/GetPost2";
+import LayoutComponent from "./components/LayoutComponent";
 
 const App = () => {
   return (
     <div>
-      <GetPost2 />
+      <LayoutComponent />
     </div>
   );
 };
