@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Yrsa:wght@300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+}
+button {
+  padding: 0.5rem 1rem;
+}
+
+.border {
+  stroke: #000;
+}
