@@ -1,90 +1,90 @@
-import { createContext, useEffect, useState } from "react";
-import AddTask from "./components/AddTask";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import TaskList from "./components/TaskList";
-import { fetchingData } from "./utils/fetchData";
-import { deleteData } from "./utils/deleteData";
-import { puutingRequest } from "./utils/updateData";
-
-export const DeleteContext = createContext();
-export const EditContext = createContext();
+import { useState } from "react";
+import Products from "./Products/Products";
+import Recommended from "./Recommended/Recommended";
+import Sidebar from "./Sidebar/Sidebar";
+import Navbar from "./components/Navigation/Nav";
+import Card from "./components/Card";
+import products from "./db/data";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [editedText, setEditedText] = useState("");
-  const [toggleEditMode, setToggleEditMode] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    //geeting data from the server
-    fetchingData(setTasks, setLoading, setError);
-  }, []);
-
-  //delete event
-  const handleDelete = (id) => {
-    //delete data
-    deleteData(id);
-    //set updated task
-    setTasks(tasks.filter((task) => task.id !== id));
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
   };
 
-  //editing event
-  const handleEdit = (id) => {
-    //set a terget el
-    const [editableTarget] = tasks.filter((task) => task.id === id);
-    editableTarget.isEditable = true;
-    setEditedText(editableTarget.text);
+  const filteredItems = products.filter((product) =>
+    product.title.toLowerCase().includes(query.toLowerCase())
+  );
 
-    setTasks([...tasks]);
-    setToggleEditMode(false);
-
-    //re-arange
-    tasks
-      .filter((task) => task.id !== id)
-      .map((targetedEl) => (targetedEl.isEditable = false));
+  const handleChange = (e) => {
+    setSelectedCategory(e.target.value);
   };
 
-  /* editing task form handle */
-
-  const handleEditSubmiter = (e, id) => {
-    e.preventDefault();
-    setToggleEditMode(!toggleEditMode);
-
-    const editPersistance = {
-      text: editedText,
-      id: id,
-    };
-
-    //put request
-    puutingRequest(id, editPersistance);
-
-    //real time update
-    const [editableTarget] = tasks.filter((task) => task.id === id);
-    editableTarget.isEditable = false;
-    editableTarget.text = editPersistance.text;
-    setTasks([...tasks]);
+  const handleClick = (e) => {
+    setSelectedCategory(e.target.value);
   };
 
+  function filteredData(products, selected, query) {
+    let filteredProducts = products;
+
+    // Filtering input items
+    if (query) {
+      filteredProducts = filteredItems;
+    }
+
+    // Selected filter
+    if (selected) {
+      filteredProducts = filteredProducts.filter(
+        ({ category, color, company, newPrice, title }) => {
+          return (
+            category === selected ||
+            color === selected ||
+            newPrice === selected ||
+            company === selected ||
+            title === selected
+          );
+        }
+      );
+    }
+
+    return filteredProducts.map(
+      ({
+        img,
+        category,
+        color,
+        company,
+        newPrice,
+        title,
+        star,
+        reviews,
+        prevPrice,
+      }) => (
+        <Card
+          key={Math.random()}
+          img={img}
+          category={category}
+          color={color}
+          company={company}
+          newPrice={newPrice}
+          title={title}
+          star={star}
+          reviews={reviews}
+          prevPrice={prevPrice}
+        />
+      )
+    );
+  }
+
+  const result = filteredData(products, selectedCategory, query);
   return (
-    <div className='Wrapper bg-teal-900 bg-gradient-to-t from-gray-900 to-teal-900 min-h-screen text-xl text-gray-100 flex flex-col py-10'>
-      <DeleteContext.Provider value={handleDelete}>
-        <EditContext.Provider value={handleEdit}>
-          <Header />
-          <AddTask tasks={tasks} setTasks={setTasks} />
-          <TaskList
-            tasks={tasks}
-            error={error}
-            loading={loading}
-            handleEditSubmiter={handleEditSubmiter}
-            editedText={editedText}
-            setEditedText={setEditedText}
-          />
-          <Footer />
-        </EditContext.Provider>
-      </DeleteContext.Provider>
-    </div>
+    <>
+      <Sidebar handleChange={handleChange} />
+      <Navbar handleInputChange={handleInputChange} query={query} />
+      <Recommended handleClick={handleClick} />
+      <Products result={result} />
+    </>
   );
 };
 
