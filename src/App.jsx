@@ -1,16 +1,14 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import TaskBoard from "./components/TaskManager/TaskBoard";
+// import AddRemoveCSS from "./components/AddRemoveCSS";
+import ProfileEditor from "./components/ProfileEditor";
+// import QuizApp from "./components/QuizApp";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <Header />
-      <TaskBoard />
-      <Footer />
-    </div>
+    <>
+      {/* <QuizApp />; */}
+      {/* <AddRemoveCSS /> */}
+      {/* <ProfileEditor /> */}
+    </>
   );
 };
 
