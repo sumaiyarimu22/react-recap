@@ -1,18 +1,10 @@
-// import AddRemoveCSS from "./components/AddRemoveCSS";
-import CustomFields from "./components/CustomFields";
-import MovingCursor from "./components/MovingCursor";
-import ProfileEditor from "./components/ProfileEditor";
-// import QuizApp from "./components/QuizApp";
+import TaskBoard from "./components/TaskBoard";
 
 const App = () => {
   return (
-    <>
-      {/* <QuizApp />; */}
-      {/* <AddRemoveCSS /> */}
-      {/* <ProfileEditor /> */}
-      {/* <MovingCursor /> */}
-      <CustomFields />
-    </>
+    <div>
+      <TaskBoard />
+    </div>
   );
 };
 
